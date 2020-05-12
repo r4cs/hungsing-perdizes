@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="jumbotron">
+  <div align='center'>
+    <h1 >Bem vind@, {{current_user.username}} (:</h1>
+      <p> email: {{ current_user.email }} </p>
+      <p> celular: {{ current_user.cellphone }}</p>
+      <p> unidade: {{ current_user.franchise }}</p>
+  </div>
+</div>
+
+<div class="container">
+  <form  method="POST" action = "" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+
+      {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  {{ message }}
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                         <span aria-hidden="true">&times;</span>
+                     </button>
+              </div>
+            {% endfor %}
+          {% endif %}
+     {% endwith %}
+
+
+         {% for error in form.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                     <p><i class="icon fas fa-ban"></i> Alert!</p>
+                         {{ error }} invalid
+                </div>
+         {% endfor %}
+
+
+
+     <div class="form-row">
+        <div class="form-group col-md-4">
+          {{ form.email.label(class="form-group col-md-4") }}
+          {{ form.email(class='form-control')  }}
+        </div>
+        <div class="form-group col-md-4">
+          {{ form.cellphone.label(class="form-group col-md-4") }}
+          {{ form.cellphone(class='form-control')  }}
+        </div>
+       <div class="form-group col-md-4">
+          {{ form.franchise.label(class="form-group col-md-4") }}
+          {{ form.franchise(class="form-control") }}
+        </div>
+     </div>
+
+  <div class="container">
+      <div class="row">
+          <div class="col">
+
+                <br> <h5>Quero receber informações sobre:</h5> <br>
+
+                     <div class="form-check form-check-inline form-group col-md-6">
+                          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="tigres" value="True">
+                          <label class="form-check-label" for="inlineCheckbox1"><b>Tigres</b> (4 a 7 anos)</label>
+                     </div>
+                     <div class="form-check form-check-inline form-group col-md-6">
+                          <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="kids" value="True">
+                          <label class="form-check-label" for="inlineCheckbox2"><b>Kids</b> (8 a 12 anos)</label>
+                     </div>
+                     <div class="form-check form-check-inline form-group col-md-6">
+                          <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="sanda" value="True">
+                          <label class="form-check-label" for="inlineCheckbox3"><b>Sanda</b></label>
+                     </div>
+
+
+                     <div class="form-check form-check-inline form-group col-md-6">
+                          <input class="form-check-input" type="checkbox" id="inlineCheckbox4" name="inic" value="True">
+                          <label class="form-check-label" for="inlineCheckbox4"><b>Tradicional Iniciante</b> (Branca-Jade)</label>
+                     </div>
+
+                     <div class="form-check form-check-inline form-group col-md-6">
+                          <input class="form-check-input" type="checkbox" id="inlineCheckbox5" name="vespertino" value="True">
+                          <label class="form-check-label" for="inlineCheckbox5"><b>Tradicional Intermediário</b> (Verde-Azul)</label>
+                     </div>
+
+                     <div class="form-check form-check-inline form-group col-md-6">
+                          <input class="form-check-input" type="checkbox" id="inlineCheckbox6" name="noturno" value="True">
+                          <label class="form-check-label" for="inlineCheckbox6"><b>Tradicional Avançado</b> (Vermelha-Preta)</label>
+                     </div>
+          </div>
+
+
+        <div class="col">
+              <br> <h5>Nos períodos:</h5> <br>
+
+                <div class="form-check form-check-inline form-group col-md-6">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox7" name="matutino" value="True">
+                  <label class="form-check-label" for="inlineCheckbox7"><b>Aulas matutinas</b> (até 12h)</label>
+                </div>
+                <div class="form-check form-check-inline form-group col-md-6">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox8" name="vespertino" value="True">
+                  <label class="form-check-label" for="inlineCheckbox8"><b>Aulas vespertinas</b> (16h às 18h15)</label>
+                </div>
+                <div class="form-check form-check-inline form-group col-md-6">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox9" name="noturno" value="True">
+                  <label class="form-check-label" for="inlineCheckbox9"><b>Aulas noturnas</b> (19h em diante)</label>
+                </div>
+                          <div class="form-check form-check-inline form-group col-md-6">
+                  <input class="form-check-input" type="checkbox" id="inlineCheckbox10" name="noturno" value="True">
+                  <label class="form-check-label" for="inlineCheckbox10"><b>Aulas aos sábados</b></label>
+                </div>
+        </div>
+      </div>
+  </div>
+
+
+
+
+         <div class="form-group">
+            {{ form.submit(class="btn btn-primary") }}
+         </div>
+
+  </form>
+
+</div>
+
+{% endblock content %}
