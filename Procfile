@@ -1,1 +1,1 @@
-web: gunicorn app:app
+gunicorn --preload --log-file=- onbytes.app:app
